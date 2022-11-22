@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author John
  */
 
-
+@SuppressWarnings("all")
 public class Binance {
     public static void main(String[] args) throws IOException {
         Document binance = Jsoup.connect("https://www.binance.com/en/markets/spot-USDT").get();
