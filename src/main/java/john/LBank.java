@@ -17,18 +17,13 @@ public class LBank {
         JsonNode parseLbank= lbankMapper.readTree(getAllCurrencyPairs("https://api.lbkex.com/v2/currencyPairs.do"));
 
         // Return all pairs with their price
-        for(int i = 0; i < 300; i++) {
-            if (i==31){continue;}
-            if (i==32){continue;}
-            if (i==33){continue;}
-            if (i==34){continue;}
-            if (i==35){continue;}
-            if (i==40){continue;}
-            if (i==41){continue;}
-            if (i==42){continue;}
-            if (i==43){continue;}
+        for(int i = 0; i < 886; i++) {
+            try {
+                System.out.println(getOneSymbolFromLbank(parseLbank.get("data").get(i).textValue()));
+            }catch (NullPointerException e){
+                continue;
+            }
 
-            System.out.println(getOneSymbolFromLbank(parseLbank.get("data").get(i).textValue()) + " " + i);
         }
 
 //        System.out.println(getOneSymbolFromLbank("btc_usdt"));  // Информация о BTC_USDT (name, price)
@@ -38,7 +33,7 @@ public class LBank {
     /**
      * @param requestLink Принимает ссылку на GET запрос для получение всех связок
      * @return название всех существующих пар
-     */
+    */
     public static String getAllCurrencyPairs(String requestLink){
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(requestLink, String.class);
@@ -53,10 +48,10 @@ public class LBank {
     */
     public static String getOneSymbolFromLbank(String symbol) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
-        String req = "https://api.lbkex.com/v2/ticker/24hr.do?symbol=" + symbol;
-        String response = restTemplate.getForObject(req, String.class);
+        String fuckingRequest = "https://api.lbkex.com/v2/ticker/24hr.do?symbol=" + symbol;
+        String fuckingResponse = restTemplate.getForObject(fuckingRequest, String.class);
         ObjectMapper objectMapperForMexc = new ObjectMapper();
-        JsonNode obj = objectMapperForMexc.readTree(response);
-        return obj.get("data").get(0).get("symbol") + " " + obj.get("data").get(0).get("ticker").get("latest");
+        JsonNode fuckingObject = objectMapperForMexc.readTree(fuckingResponse);
+        return fuckingObject.get("data").get(0).get("symbol") + " " + fuckingObject.get("data").get(0).get("ticker").get("latest");
     }
 }

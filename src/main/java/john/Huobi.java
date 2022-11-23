@@ -7,8 +7,8 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 
 /**
- * @author John
- */
+* @author John
+*/
 
 @SuppressWarnings("all")
 public class Huobi {
@@ -19,25 +19,16 @@ public class Huobi {
         // Return all pairs with their price
         for(int i = 0; i < 955; i++) {
 
-            // Исключаем
-            if (i == 141){continue;}
-            if (i==265){continue;}
-            if (i==321){continue;}
-            if (i==475){continue;}
-            if (i==671){continue;}
-            if (i==768){continue;}
-            if (i==872){continue;}
-            if (i==920){continue;}
-            if (i==921){continue;}
-            if (i==892){continue;}
-
-
-            System.out.println(getOneSymbolFromHuobi(parseHuobi.get("data").get(i).get("symbol").textValue()));
+            try {
+                System.out.println(getOneSymbolFromHuobi(parseHuobi.get("data").get(i).get("symbol").textValue()));
+            }catch (NullPointerException e){
+                continue;
+            }
         }
-    //        System.out.println(getOneSymbolFromHuobi("btcusdt"));  // Информация о BTC-USDT (name, price)
+
+        //        System.out.println(getOneSymbolFromHuobi("btcusdt"));  // Информация о BTC-USDT (name, price)
 
     }
-
     /**
     * @param requestLink Принимает ссылку на GET запрос для получение всех связок
     * @return название всех существующих пар
