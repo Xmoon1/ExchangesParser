@@ -14,19 +14,18 @@ import java.io.IOException;
 @SuppressWarnings("all")
 public class Mexc {
     public static void main(String[] args) throws IOException {
-                RestTemplate restTemplate = new RestTemplate();
-                String url = "https://www.mexc.com/open/api/v2/market/ticker"; // Все связки
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://www.mexc.com/open/api/v2/market/ticker"; // Все связки
 
-                String allSymbolsFromMexc = restTemplate.getForObject(url, String.class);
-                ObjectMapper mexcMapper = new ObjectMapper();
-                JsonNode parseMexc = mexcMapper.readTree(allSymbolsFromMexc);
+        String allSymbolsFromMexc = restTemplate.getForObject(url, String.class);
+        ObjectMapper mexcMapper = new ObjectMapper();
+        JsonNode parseMexc = mexcMapper.readTree(allSymbolsFromMexc);
 
-                for(int i = 0; i < 2000; i++) {
-                    System.out.println(parseMexc.get("data").get(i).get("symbol") +" "+ parseMexc.get("data").get(i).get("last"));
-                }
+        for(int i = 0; i < 2000; i++) {
+            System.out.println(parseMexc.get("data").get(i).get("symbol") +" "+ parseMexc.get("data").get(i).get("last"));
+        }
 
-
-                System.out.println(getOneSymbolFromMexc("BTC_USDT")); //        Получаем все данные о BTC_USDT из MEXC (name, price)
+        System.out.println(getOneSymbolFromMexc("BTC_USDT")); //  Получаем все данные о BTC_USDT из MEXC (name, price)
 
     }
 

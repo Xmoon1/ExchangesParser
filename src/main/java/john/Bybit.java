@@ -15,6 +15,12 @@ public class Bybit {
         getInfo();
     }
 
+
+
+    /**
+     * @return Имя связки и цену
+     * @throws JsonProcessingException
+     */
     public static void getInfo() throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         String req = "https://api-testnet.bybit.com/v2/public/tickers";
@@ -23,7 +29,7 @@ public class Bybit {
         JsonNode obj = objectMapperForMexc.readTree(response);
 
         for(int i = 0; i < 195; i++) {
-            System.out.println(obj.get("result").get(i).get("symbol") + " " + obj.get("result").get(i).get("index_price"));
+            System.out.println(obj.get("result").get(i).get("symbol") + " - " + obj.get("result").get(i).get("index_price"));
         }
     }
 }

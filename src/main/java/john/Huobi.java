@@ -18,7 +18,6 @@ public class Huobi {
 
         // Return all pairs with their price
         for(int i = 0; i < 955; i++) {
-
             try {
                 System.out.println(getOneSymbolFromHuobi(parseHuobi.get("data").get(i).get("symbol").textValue()));
             }catch (NullPointerException e){
@@ -29,6 +28,8 @@ public class Huobi {
         //        System.out.println(getOneSymbolFromHuobi("btcusdt"));  // Информация о BTC-USDT (name, price)
 
     }
+
+
     /**
     * @param requestLink Принимает ссылку на GET запрос для получение всех связок
     * @return название всех существующих пар
@@ -51,6 +52,6 @@ public class Huobi {
         String response = restTemplate.getForObject(req, String.class);
         ObjectMapper objectMapperForMexc = new ObjectMapper();
         JsonNode obj = objectMapperForMexc.readTree(response);
-        return symbol + " " + obj.get("tick").get("data").get(0).get("price");
+        return symbol + " - " + obj.get("tick").get("data").get(0).get("price");
     }
 }
