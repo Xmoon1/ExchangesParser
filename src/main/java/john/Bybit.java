@@ -28,7 +28,7 @@ public class Bybit {
         ObjectMapper objectMapperForMexc = new ObjectMapper();
         JsonNode obj = objectMapperForMexc.readTree(response);
 
-        for(int i = 0; i < 195; i++) {
+        for(int i = 0; i < 193; i++) {
             System.out.println(obj.get("result").get(i).get("symbol") + " - " + obj.get("result").get(i).get("index_price"));
         }
     }

@@ -19,7 +19,8 @@ public class LBank {
         // Return all pairs with their price
         for(int i = 0; i < 886; i++) {
             try {
-                System.out.println(getOneSymbolFromLbank(parseLbank.get("data").get(i).textValue()));
+                String a  = getOneSymbolFromLbank(parseLbank.get("data").get(i).textValue());
+                System.out.println(a.toUpperCase().replace("_", " / "));
             }catch (NullPointerException e){
                 continue;
             }

@@ -19,14 +19,16 @@ public class Huobi {
         // Return all pairs with their price
         for(int i = 0; i < 955; i++) {
             try {
-                System.out.println(getOneSymbolFromHuobi(parseHuobi.get("data").get(i).get("symbol").textValue()));
+                String a = getOneSymbolFromHuobi(parseHuobi.get("data").get(i).get("symbol").textValue());
+                System.out.println(a.toUpperCase()
+                    .replace("USDT", " / USDT" ));
             }catch (NullPointerException e){
                 continue;
             }
         }
 
-        //        System.out.println(getOneSymbolFromHuobi("btcusdt"));  // Информация о BTC-USDT (name, price)
 
+        System.out.println(getOneSymbolFromHuobi("btcusdt"));  // Информация о BTC-USDT (name, price)
     }
 
 
